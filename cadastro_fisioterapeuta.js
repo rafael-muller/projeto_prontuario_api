@@ -31,6 +31,7 @@ function buscarPorId(id){
         }
     }
     throw({
+        //indica que a URL solicitada não pode ser encontrada no servidor
         numero: 404,
         msg: "Erro: Profissional não encontrado, tente novamente!"
     });
@@ -43,18 +44,21 @@ function atualizar(id, fisioterapeutaAlterar){
     //validação dos dados do fisioterapeuta (OU).
     if(!fisioterapeutaAlterar || !fisioterapeutaAlterar.nome || !fisioterapeutaAlterar.especialidade){
         throw({
+            //é um código de erro exibido quando um navegador web envia uma solicitação incorreta para um servidor web
             numero: 400,
             msg: "Erro: Os dados do profissional estão invávlidos!"
         });
     }
     for(let indice in listaFisioterapeuta){
         if(listaFisioterapeuta[indice].id == id){
+            //produz um valor inteiro ditado pela interpretação do conteúdo de uma argumento string
             fisioterapeutaAlterar.id = parseInt(id);
             listaFisioterapeuta[indice] = fisioterapeutaAlterar;
             return listaFisioterapeuta[indice];
         }
     }
     throw({
+        //indica que a URL solicitada não pode ser encontrada no servidor
         numero: 404,
         msg: "Erro: Fisioterapeuta não encontrado.!"
     });
@@ -69,12 +73,13 @@ function deletar(id){
         }
     }
     throw({
+        //indica que a URL solicitada não pode ser encontrada no servidor
         numero: 404,
         msg: "Erro: Fisioterapeuta não encontrado! "
     });
 
 }
-
+//um objeto em um arquivo Node.js que contém os valores e funções exportados desse módulo
 module.exports = {
     listar,
     inserir,

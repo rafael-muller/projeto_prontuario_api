@@ -17,9 +17,10 @@ function buscarPorId(req,res) {
 
 function inserir(req, res) {
     const fisioterapeuta = req.body;
-
+    //A estrutura try...catch deve ser utilizada em operações que podem falhar.
     try{
         const fisioterapeutaCadastrado = cadastroFisioterapeuta.inserir(fisioterapeuta);
+        //é utilizado como resposta de sucesso, indica que a requisição foi bem sucedida e que um novo recurso foi criado.
         res.status(201).json(fisioterapeutaCadastrado);
     }
     catch (err) {
