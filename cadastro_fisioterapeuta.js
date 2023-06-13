@@ -1,5 +1,5 @@
 let listaFisioterapeuta = []; // declarando variável da lista de fisioterapeuta
-let idIncremental = 1; /* declaração de ID auto incremental para que o próximo profissional seja 
+let idAutoIncrement = 1; /* declaração de ID auto incremental para que o próximo profissional seja 
                        adicionado ao próximo ID.*/
 
 // função para listar todos fisioterapeutas da lista
@@ -10,14 +10,15 @@ function listar(){
 //função de inserção de profissional de fisioterapia, validando ID, nome, e especialidade
 function inserir(fisioterapeuta){
     if(fisioterapeuta && fisioterapeuta.nome && fisioterapeuta.especialidade){
-        fisioterapeuta.id = idIncremental++;
+        fisioterapeuta.id = idAutoIncrement++;
         listaFisioterapeuta.push(fisioterapeuta);
         return fisioterapeuta;
     }
     else{
+        // instrução que permite criar um erro personalizado.
         throw({
             numero: 400,
-            msg: "Erro: Os dados do produto estão inválidos!"
+            msg: "Erro: Os dados do fisioterapeuta estão inválidos!"
         });
     }
 
