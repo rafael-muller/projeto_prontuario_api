@@ -1,7 +1,8 @@
 const cadastroFisioterapeuta = require('../cadastro_fisioterapeuta')
 
 function listar(req, res) {
-    const listaFisioterapeuta = req.cadastroFisioterapeuta.listar();
+    console.log(req);
+    const listaFisioterapeuta = cadastroFisioterapeuta.listar();
     res.json(listaFisioterapeuta);
 }
 

@@ -41,6 +41,7 @@ function buscarPorId(id){
 
 //função para atualizar o profissional de fisioterapia
 function atualizar(id, fisioterapeutaAlterar){
+    console.log(atualizar);
     //validação dos dados do fisioterapeuta (OU).
     if(!fisioterapeutaAlterar || !fisioterapeutaAlterar.nome || !fisioterapeutaAlterar.especialidade){
         throw({
@@ -50,9 +51,9 @@ function atualizar(id, fisioterapeutaAlterar){
         });
     }
     for(let indice in listaFisioterapeuta){
-        if(listaFisioterapeuta[indice].id == id){
+        if(listaFisioterapeuta[indice].id == (id)){
             //produz um valor inteiro ditado pela interpretação do conteúdo de uma argumento string
-            fisioterapeutaAlterar.id = parseInt(id);
+            fisioterapeutaAlterar.id = parseInt(especialidade);
             listaFisioterapeuta[indice] = fisioterapeutaAlterar;
             return listaFisioterapeuta[indice];
         }
