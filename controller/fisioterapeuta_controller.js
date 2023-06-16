@@ -1,7 +1,7 @@
 const cadastroFisioterapeuta = require('../cadastro_fisioterapeuta')
 
 function listar(req, res) {
-    console.log(req);
+    
     const listaFisioterapeuta = cadastroFisioterapeuta.listar();
     res.json(listaFisioterapeuta);
 }
@@ -32,6 +32,7 @@ function inserir(req, res) {
 function atualizar(req,res) {
     const id = req.params.id;
     const fisioterapeuta = req.body;
+
     try{
         const fisioterapeutaAtualizado = cadastroFisioterapeuta.atualizar(id,fisioterapeuta);
         res.json(fisioterapeutaAtualizado);
