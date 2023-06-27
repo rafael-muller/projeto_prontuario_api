@@ -9,7 +9,7 @@ const router = express.Router();
 router.get('/', fisioterapeutaController.listar);
 router.get('/:id', fisioterapeutaController.buscarPorId)
 router.post('/', fisioterapeutaController.inserir);
-router.put('/:id', fisioterapeutaController.atualizar);
+router.put('/', fisioterapeutaController.atualizar);
 router.delete('/:id', fisioterapeutaController.deletar);
 
 module.exports = router;

@@ -30,11 +30,10 @@ function inserir(req, res) {
 }
 
 function atualizar(req,res) {
-    const id = req.params.id;
     const fisioterapeuta = req.body;
 
     try{
-        const fisioterapeutaAtualizado = cadastroFisioterapeuta.atualizar(id,fisioterapeuta);
+        const fisioterapeutaAtualizado = cadastroFisioterapeuta.atualizar(fisioterapeuta);
         res.json(fisioterapeutaAtualizado);
     }
     catch (err) {
