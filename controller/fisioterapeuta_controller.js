@@ -1,8 +1,9 @@
 const cadastroFisioterapeuta = require('../cadastro_fisioterapeuta')
+const repositoryFisioterapeuta = require('../repository/fisioterapeuta_repository')
 
-function listar(req, res) {
+async function listar(req, res) {
     
-    const listaFisioterapeuta = cadastroFisioterapeuta.listar();
+    const listaFisioterapeuta = await repositoryFisioterapeuta.listar();
     res.json(listaFisioterapeuta);
 }
 
