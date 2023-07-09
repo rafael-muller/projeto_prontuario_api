@@ -7,30 +7,48 @@ async function listar(req, res) {
     res.json(listaFisioterapeuta);
 }
 
-function buscarPorId(req,res) {
+async function buscarPorId(req,res) {
     const id = req.params.id;
-    try{
-        const fisioterapeuta = cadastroFisioterapeuta.buscarPorId(id);
+        const fisioterapeuta =  await repositoryFisioterapeuta.buscarPorId(id);
+    if(fisioterapeuta){
+
         res.json(fisioterapeuta);
-    } catch (err) {
-        res.status(err.numero).json(err);
+
+    } 
+    else {
+        res.status(404).json(
+            {
+                numero: 404,
+                msg: "Erro: Fisioterapeuta não encontrado."
+            }
+        );
     }
 }
 
-function inserir(req, res) {
+async function inserir(req, res) {
     const fisioterapeuta = req.body;
     //A estrutura try...catch deve ser utilizada em operações que podem falhar.
-    try{
-        const fisioterapeutaCadastrado = cadastroFisioterapeuta.inserir(fisioterapeuta);
+    if( fisioterapeuta.nome && fisioterapeuta.especialidade){
+        const fisioterapeutaCadastrado = /*cadastroFisioterapeuta.inserir(fisioterapeuta);*/
+            await repositoryFisioterapeuta.inserirFisioterapeuta(fisioterapeuta);
         //é utilizado como resposta de sucesso, indica que a requisição foi bem sucedida e que um novo recurso foi criado.
         res.status(201).json(fisioterapeutaCadastrado);
+
     }
-    catch (err) {
-        res.status(err.numero).json(err);
+    else {
+
+        res.status(400).json(
+            {
+                numero: 400,
+                msg: "Erro: Os parametros do Fisioterapeuta estão inválidos."
+            }
+
+        );
     }
 }
 
 function atualizar(req,res) {
+    const id = req.params.id;
     const fisioterapeuta = req.body;
 
     try{

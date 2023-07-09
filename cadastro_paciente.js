@@ -1,59 +1,61 @@
-let listaFisioterapeuta = []; // declarando variável da lista de fisioterapeuta
-let idAutoIncrement = 1; /* declaração de ID auto incremental para que o próximo profissional seja 
+let listaPaciente = []; // declarando lista de Paciente
+let idAutoIncrement = 1; /* declaração de ID auto incremental para que o próximo paciente seja 
                        adicionado ao próximo ID.*/
 
-// função para listar todos fisioterapeutas da lista
+// função para listar todos pacientes da lista
 function listar(){
-    return listaFisioterapeuta;
+    return listaPaciente;
 }
 
 //função de inserção de profissional de fisioterapia, validando ID, nome, e especialidade
-function inserir(fisioterapeuta){
-    if(fisioterapeuta && fisioterapeuta.nome && fisioterapeuta.especialidade){
-        fisioterapeuta.id = idAutoIncrement++;
-        listaFisioterapeuta.push(fisioterapeuta);
-        return fisioterapeuta;
+function inserir(paciente){
+    if(paciente && paciente.nome && paciente.nascimento){
+        paciente.id = idAutoIncrement++;
+        listaPaciente.push(paciente);
+        return paciente;
     }
     else{
         // instrução que permite criar um erro personalizado.
-        throw ({
+        throw({
             numero: 400,
-            msg: "Erro: Os dados do fisioterapeuta estão inválidos!"
+            msg: "Erro: Os dados do paciente estão inválidos!"
         });
     }
 
 }
 //função para buscar o profissional por id, validando os dados do cadastro
 function buscarPorId(id){
-    for(let fisioterapeuta of listaFisioterapeuta){
-        if(fisioterapeuta.id == id){
-            return fisioterapeuta;
+    for(let paciente of listaPaciente){
+        if(paciente.id == id){
+            return paciente;
         }
     }
-    throw ({
+    throw({
         //indica que a URL solicitada não pode ser encontrada no servidor
         numero: 404,
-        msg: "Erro: Profissional não encontrado, tente novamente!"
+        msg: "Erro: Paciente não encontrado, tente novamente!"
     });
 
 
 }
 
 //função para atualizar o profissional de fisioterapia
-function atualizar(id, fisioterapeutaAlterar){
+function atualizar(pacienteAlterar){
     //validação dos dados do fisioterapeuta (OU).
-    if(!fisioterapeutaAlterar.nome || !fisioterapeutaAlterar.especialidade  || !fisioterapeutaAlterar.id ){
-        throw ({
+    if(!pacienteAlterar.nome || !pacienteAlterar.nascimento  || !pacienteAlterar.id ){
+        throw({
             //é um código de erro exibido quando um navegador web envia uma solicitação incorreta para um servidor web
             numero: 400,
-            msg: "Erro: Os dados do profissional estão invávlidos!"
+            msg: "Erro: Os dados do paciente estão invávlidos!"
         });
     }
 
-    for(let indice in listaFisioterapeuta){
-        if(listaFisioterapeuta[indice].id == fisioterapeutaAlterar.id){
-            listaFisioterapeuta[indice] = fisioterapeutaAlterar;
-            return listaFisioterapeuta[indice];
+    for(let indice in listaPaciente){
+        if(listaPaciente[indice].id == pacienteAlterar.id){
+            //linha abaixo adicionada para segurar id no momento da alteração
+            //fisioterapeutaAlterar.id = id;
+            listaPaciente[indice] = pacienteAlterar;
+            return listaPaciente[indice];
 
         }
      
@@ -62,7 +64,7 @@ function atualizar(id, fisioterapeutaAlterar){
     throw({
         //indica que a URL solicitada não pode ser encontrada no servidor
         numero: 404,
-        msg: "Erro: Fisioterapeuta não encontrado.!"
+        msg: "Erro: Paciente não encontrado.!"
     });
 
 
