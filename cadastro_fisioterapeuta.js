@@ -36,7 +36,6 @@ function buscarPorId(id){
         msg: "Erro: Profissional não encontrado, tente novamente!"
     });
 
-
 }
 
 //função para atualizar o profissional de fisioterapia
