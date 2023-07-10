@@ -36,11 +36,42 @@ async function inserirFisioterapeuta(fisioterapeuta){
   await cliente.end();
   return fisioterapeutaInserido; 
 
-
 }
+
+async function atualizar(id, fisioterapeuta) {
+  const sql = 'UPDATE fisioterapeuta set nome=$1, especialidade=$2 WHERE id=$3 RETURNING *'
+  const values = [fisioterapeuta.nome, fisioterapeuta.especialidade, id];
+
+  const cliente = new Client(conexao);
+  await cliente.connect();
+  const res = await cliente.query(sql,values);
+  const fisioterapeutaAtualizado = res.rows[0];
+  await cliente.end();
+  return fisioterapeutaAtualizado;    
+}
+
+
+
+
+async function deletar(id) {
+  const sql = 'DELETE FROM fisioterapeuta WHERE id=$1 RETURNING *'
+  const values = [id];
+
+  const cliente = new Client(conexao);
+  await cliente.connect();
+  const res = await cliente.query(sql,values);
+  const fisioterapeutaDeletado = res.rows[0];
+  await cliente.end();
+  return fisioterapeutaDeletado;    
+}
+
+
+
 
 module.exports = {
     listar,
     buscarPorId,
-    inserirFisioterapeuta
+    inserirFisioterapeuta,
+    atualizar,
+    deletar
 }
