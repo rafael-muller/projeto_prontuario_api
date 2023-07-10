@@ -49,32 +49,21 @@ function atualizar(id, fisioterapeutaAlterar){
             msg: "Erro: Os dados do profissional estão invávlidos!"
         });
     }
-
     for(let indice in listaFisioterapeuta){
         if(listaFisioterapeuta[indice].id == fisioterapeutaAlterar.id){
             listaFisioterapeuta[indice] = fisioterapeutaAlterar;
             return listaFisioterapeuta[indice];
 
         }
-     
-
     }
     throw({
         //indica que a URL solicitada não pode ser encontrada no servidor
         numero: 404,
         msg: "Erro: Fisioterapeuta não encontrado.!"
     });
-
-
-   /*let test = listaFisioterapeuta.filter((fisio)=> fisio.id == id)
-   test.nome = fisioterapeutaAlterar.nome
-   test.especialidade = fisioterapeutaAlterar.especialidade
-
-   console.log(fisioterapeutaAlterar)
-   console.log(test)
-*/
 }
 
+// Função para deletar fisioterapeuta
 function deletar(id){
     for(let indice in listaFisioterapeuta){
         if(listaFisioterapeuta[indice].id == id){

@@ -50,7 +50,7 @@ async function inserir(req, res) {
 async function atualizar(req,res) {
     const id = req.params.id;
     const fisioterapeuta = req.body;
-
+    
     if(fisioterapeuta && fisioterapeuta.nome && fisioterapeuta.especialidade)
     {
         const fisioterapeutaAlterado = 
